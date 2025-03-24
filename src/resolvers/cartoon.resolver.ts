@@ -1,6 +1,14 @@
 import { default as cartoons } from "../../dataset.json";
 import { Cartoon } from "../types/cartoon.type";
 
-export const getOneCartoonById = (): Cartoon => {
-    return cartoons[0]
+type GetOneCartoonByIdArgs = {
+    id: number;
+}
+
+export const getOneCartoonById = (_: unknown, args: GetOneCartoonByIdArgs): Cartoon => {
+    return cartoons.find((cartoon) => cartoon.id === +args.id) as Cartoon;
+}
+
+export const getCartoons = (): Cartoon[] => {
+    return cartoons;
 }
