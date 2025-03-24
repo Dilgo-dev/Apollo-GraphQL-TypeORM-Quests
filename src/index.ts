@@ -4,13 +4,14 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { getOneCartoonById, getCartoons } from "./resolvers/cartoon.resolver";
 import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
-import { Cartoon } from "./schemas/cartoon.schema";
+import { Cartoon, CartoonInput } from "./schemas/cartoon.schema";
 
 const typeDefs = `#graphql
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
   type Cartoon ${Cartoon}
   type Personnage ${Personnage}
   input PersonnageInput ${PersonnageInput}
+  input CartoonInput ${CartoonInput}
 
   # The "Query" type is special: it lists all of the available queries
   type Query {
