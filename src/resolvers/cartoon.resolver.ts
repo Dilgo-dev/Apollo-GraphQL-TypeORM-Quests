@@ -34,3 +34,14 @@ export const createCartoon = (_: unknown, args: { cartoon: Cartoon }): number =>
     })
     return newCartoonId;
 }
+
+
+export const deleteCartoon = (_: unknown, args: { id: string }): boolean => {
+    const { id } = args;
+    const index = cartoons.findIndex((cartoon) => cartoon.id === +id);
+    if (index === -1) {
+        throw new Error("Cartoon not found");
+    }
+    cartoons.splice(index, 1);
+    return true;
+}

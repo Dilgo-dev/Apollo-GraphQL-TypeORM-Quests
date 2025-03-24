@@ -2,7 +2,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { getOneCartoonById, getCartoons, createCartoon } from "./resolvers/cartoon.resolver";
+import { getOneCartoonById, getCartoons, createCartoon, deleteCartoon } from "./resolvers/cartoon.resolver";
 import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
 import { Cartoon, CartoonInput } from "./schemas/cartoon.schema";
 
@@ -21,6 +21,7 @@ const typeDefs = `#graphql
 
   type Mutation {
     createCartoon(cartoon: CartoonInput!): ID
+    deleteCartoon(id: ID!): Boolean
   }
 `;
 
@@ -32,6 +33,7 @@ const resolvers = {
     },
     Mutation: {
       createCartoon,
+      deleteCartoon,
     },
   };
 
