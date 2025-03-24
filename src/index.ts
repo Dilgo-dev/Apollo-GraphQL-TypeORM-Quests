@@ -2,7 +2,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { getOneCartoonById, getCartoons } from "./resolvers/cartoon.resolver";
+import { getOneCartoonById, getCartoons, createCartoon } from "./resolvers/cartoon.resolver";
 import { Personnage, PersonnageInput } from "./schemas/personnage.schema";
 import { Cartoon, CartoonInput } from "./schemas/cartoon.schema";
 
@@ -18,6 +18,10 @@ const typeDefs = `#graphql
     getCartoons: [Cartoon],
     getOneCartoonById(id: ID!): Cartoon
   }
+
+  type Mutation {
+    createCartoon(cartoon: CartoonInput!): ID
+  }
 `;
 
 // This resolver retrieves books from the "books" array above.
@@ -25,6 +29,9 @@ const resolvers = {
     Query: {
       getCartoons,
       getOneCartoonById,
+    },
+    Mutation: {
+      createCartoon,
     },
   };
 
